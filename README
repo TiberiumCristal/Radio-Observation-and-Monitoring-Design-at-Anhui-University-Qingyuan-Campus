@@ -1,0 +1,43 @@
+# IQ Signal Spectrum Analyzer
+
+A Python tool for batch processing IQ data (WAV format) to generate power spectral density (PSD) plots and differential spectrum analysis.
+
+## Features
+- **Batch Processing**: Automatically processes all WAV files in a directory.
+- **Flexible FFT Configuration**: Supports custom FFT sizes, overlap, and window functions.
+- **Memory Management**: Monitors memory usage to avoid overflow.
+- **Differential Analysis**: Compares adjacent files to highlight changes in spectrum.
+- **High-Resolution Output**: Generates PNG images with adjustable DPI.
+
+
+## Installation
+### Dependencies
+- Python 3.7+
+- Required packages:  
+  ```bash
+  pip install numpy scipy matplotlib psutil tqdm
+PS: I recomand that you use full version of anaconda3 to run this. 
+
+##Usage
+###Basic Command
+  python IQ_based_analysis.py
+
+###Parameters(Modify in __main__ section)
+  Parameter	          Description
+  input_dir	          Directory containing input WAV files (I/Q format, 2 channels, 16-bit PCM).
+  output_dir	        Output directory for spectrum plots. Default: spectrum_results.
+  fft_size	          FFT window size (must be a power of 2). Default: 32768.
+  overlap	            Overlap between segments. Must be < fft_size. Default: 16384.
+  window_type	        Window function: hann, hamming, blackman, flattop.
+  center_freq	        Center frequency (Hz) for frequency axis labeling.
+  dpi	                Image resolution (dots per inch). Default: 200.
+  max_memory_usage  	Memory usage threshold (%). Default: 85.
+  enable_diff	        Enable differential spectrum analysis. Default: True.
+
+
+##Output
+###Standard Spectrum Plot:
+  Filename: [filename]_spectrum.png
+
+###Differential Spectrum Plot (if enabled):
+  Filename: diff_[prev]_vs_[next].png
